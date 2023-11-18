@@ -9,10 +9,9 @@ import (
 	"github.com/gorilla/mux"
 )
 
-
 type APIServer struct {
 	listenAddr string
-	store Storage
+	store      Storage
 }
 
 type apiFunc func(http.ResponseWriter, *http.Request) error
@@ -24,7 +23,7 @@ type ApiError struct {
 func NewAPIServer(listenAddr string, store Storage) *APIServer {
 	return &APIServer{
 		listenAddr: listenAddr,
-		store: store,
+		store:      store,
 	}
 }
 
@@ -71,8 +70,6 @@ func WriteJSON(w http.ResponseWriter, status int, v any) error {
 	w.WriteHeader(status)
 	return json.NewEncoder(w).Encode(v)
 }
-
-
 
 func makeHTTPHandleFunc(f apiFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {

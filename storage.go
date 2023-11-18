@@ -10,7 +10,7 @@ type Storage interface {
 	CreateAccount(*Account) error
 	DeleteAccount(int) error
 	UpdateAccount(*Account) error
-	GetAccount(int) (*Account, error)
+	GetAccountById(int) (*Account, error)
 }
 
 type PostgresStore struct {
@@ -18,7 +18,7 @@ type PostgresStore struct {
 }
 
 func NewPostgresStore() (*PostgresStore, error) {
-  connStr := "user=postgres dbname=postgres password=gobank sslmode=verify-full"
+  connStr := "user=postgres dbname=postgres password=gobank sslmode=disable"
   db, err := sql.Open("postgres", connStr)
   if err != nil {
     return nil, err
@@ -31,4 +31,19 @@ func NewPostgresStore() (*PostgresStore, error) {
   }, nil
 }
 
+func (s *PostgresStore) CreateAccount(*Account) error {
+  return nil
+}
+
+func (s *PostgresStore) UpdateAccount(*Account) error {
+  return nil
+}
+
+func(s *PostgresStore) DeleteAccount(id int) error {
+  return nil
+}
+
+func (s *PostgresStore) GetAccountById(id int) (*Account, error) {
+  return nil, nil
+}
 
